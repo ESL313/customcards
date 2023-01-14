@@ -1,0 +1,33 @@
+html,
+body {
+	background-color: #2b333d;
+	display: flex;
+	justify-content: center;
+	min-height: 100%;
+	width: 100%;
+}
+
+#content {
+	color: #ffffff;
+	font-family: genshin-font;
+	font-size: 5vw;
+	text-align: center;
+}
+
+#canvas {
+	display: none;
+}
+
+#image {
+	border-color: rgba(0, 0, 0, 0.2);
+	border-radius: 0.5vw;
+	border-style: solid;
+	border-width: 0.5vw;
+	height: calc(80vw * 9 / 16);
+	width: 80vw;
+}
+
+@font-face {
+	font-family: genshin-font;
+	src: url(/customcards/assets/miscellaneous/font.ttf);
+}
