@@ -63,9 +63,9 @@ async function specialSkill(index, height) {
 	const skill = getData('specialSkills', index);
 
 	ctx.font = `${unit(30)}px genshin-font`;
-	const title = wrapText(skill.name, unit(350));
+	const title = wrapText(skill.name, unit(590));
 	ctx.font = `${unit(25)}px genshin-font`;
-	const description = wrapText(skill.description, unit(480));
+	const description = wrapText(skill.description, unit(590));
 
 	ctx.globalAlpha = 0.2;
 	ctx.fillStyle = color.black;
