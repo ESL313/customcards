@@ -104,7 +104,7 @@ async function actionDescription() {
 	ctx.globalAlpha = 0.2;
 	ctx.fillStyle = color.black;
 	ctx.beginPath();
-	ctx.roundRect(unit(560), unit(290), unit(1290), 720, unit(20));
+	ctx.roundRect(unit(560), unit(290), unit(1290), unit(720), unit(20));
 	ctx.fill();
 	ctx.globalAlpha = 1;
 
