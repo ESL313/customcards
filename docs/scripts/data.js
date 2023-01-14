@@ -91,6 +91,27 @@ function sendDefault(...pathArgs) {
 			}
 		]
 	};
+
+	if (!isCharacter) item = {
+		info: {
+			size: 1,
+			type: 'Action'
+		},
+		character: {
+			name: 'Paimon',
+			image: '/customcards/assets/default/paimon.png',
+			type: 'Support Card',
+			subtype: 'Companion',
+			description: 'When Action Phase begins: Create Omni Element x2. Usage(s): 2'
+		},
+		cost: [
+			{
+				type: 'Matching',
+				value: 3
+			}
+		]
+	}
+
 	for (const path of paths) item = item[path];
 	return item;
 }

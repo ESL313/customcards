@@ -43,7 +43,7 @@ async function combatSkill(index, height) {
 
 	const costCount = skill.cost.length;
 	for (let i = 0; i < costCount; i++) {
-		await ctx.drawImage(await getDiceImage(skill.cost[i].type), unit(1160 - 60 * (costCount - i)), unit(300) + height, unit(60), unit(60));
+		await ctx.drawImage(await getDiceImage(skill.cost[i].type), unit(1160 - (costCount - i) * 60), unit(300) + height, unit(60), unit(60));
 
 		ctx.fillStyle = color.white;
 		ctx.font = `${unit(30)}px genshin-font`;
@@ -52,8 +52,8 @@ async function combatSkill(index, height) {
 		ctx.lineWidth = unit(3);
 
 		const value = skill.cost[i].value;
-		ctx.strokeText(value, unit(1190 - 60 * (costCount - i)), unit(330) + height);
-		ctx.fillText(value, unit(1190 - 60 * (costCount - i)), unit(330) + height);
+		ctx.strokeText(value, unit(1190 - (costCount - i) * 60), unit(330) + height);
+		ctx.fillText(value, unit(1190 - (costCount - i) * 60), unit(330) + height);
 	}
 
 	return currentHeight + unit(40);
@@ -99,6 +99,27 @@ async function specialSkill(index, height) {
 	}
 
 	return currentHeight + unit(40);
+}
+
+async function actionDescription() {
+	ctx.globalAlpha = 0.2;
+	ctx.fillStyle = color.black;
+	ctx.beginPath();
+	ctx.roundRect(unit(560), unit(290), unit(1290), 720, unit(20));
+	ctx.fill();
+	ctx.globalAlpha = 1;
+
+	let currentHeight = unit(0);
+
+	ctx.fillStyle = color.secondary;
+	ctx.font = `${unit(35)}px genshin-font`;
+	ctx.textBaseline = 'top';
+	ctx.textAlign = 'left';
+	const description = wrapText(getData('character', 'description'), unit(1250));
+	for (const line of description) {
+		ctx.fillText(line, unit(580), unit(310) + currentHeight);
+		currentHeight += unit(45);
+	}
 }
 
 let costs = {};

@@ -10,8 +10,6 @@ async function background() {
 
 	ctx.fillStyle = color.black;
 	ctx.roundRect(unit(70), unit(70), unit(1780), unit(150), unit(20));
-	// ctx.roundRect(unit(560), unit(290), unit(610), unit(720), unit(20));
-	// ctx.roundRect(unit(1240), unit(290), unit(610), unit(720), unit(20));
 	ctx.fill();
 	ctx.globalAlpha = 1;
 }

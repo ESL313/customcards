@@ -27,24 +27,30 @@ async function render() {
 	await genshinFont.load();
 	await document.fonts.add(genshinFont);
 
-	await background();
-	await title();
-	await card();
-
-	const combatSkillCount = getData('combatSkills').length;
-	let i = 0;
-	let usedHeight = unit(0);
-	while (i < combatSkillCount) {
-		usedHeight += await combatSkill(i, usedHeight);
-		i++;
+	if (getData('info', 'type') === 'Character') {
+		await background();
+		await characterTitle();
+		await characterCard();
+		const combatSkillCount = getData('combatSkills').length;
+		let i = 0;
+		let usedHeight = unit(0);
+		while (i < combatSkillCount) {
+			usedHeight += await combatSkill(i, usedHeight);
+			i++;
+		}
+		const specialSkillCount = getData('specialSkills').length;
+		i = 0;
+		usedHeight = unit(0);
+		while (i < specialSkillCount) {
+			usedHeight += await specialSkill(i, usedHeight);
+			i++;
+		}
 	}
-
-	const specialSkillCount = getData('specialSkills').length;
-	i = 0;
-	usedHeight = unit(0);
-	while (i < specialSkillCount) {
-		usedHeight += await specialSkill(i, usedHeight);
-		i++;
+	else {
+		await background();
+		await actionTitle();
+		await actionCard();
+		await actionDescription();
 	}
 
 	image.src = canvas.toDataURL('image/png');
