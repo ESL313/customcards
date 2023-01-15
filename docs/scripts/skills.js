@@ -1,5 +1,5 @@
 async function combatSkill(index, height) {
-	const skill = getData('combatSkills', index);
+	const skill = await getData('combatSkills', index);
 
 	ctx.font = `${unit(30)}px genshin-font`;
 	const title = wrapText(skill.name, unit(350));
@@ -60,7 +60,7 @@ async function combatSkill(index, height) {
 }
 
 async function specialSkill(index, height) {
-	const skill = getData('specialSkills', index);
+	const skill = await getData('specialSkills', index);
 
 	ctx.font = `${unit(30)}px genshin-font`;
 	const title = wrapText(skill.name, unit(590));
@@ -114,7 +114,7 @@ async function actionDescription() {
 	ctx.font = `${unit(35)}px genshin-font`;
 	ctx.textBaseline = 'top';
 	ctx.textAlign = 'left';
-	const description = wrapText(getData('character', 'description'), unit(1250));
+	const description = wrapText(await getData('character', 'description'), unit(1250));
 	for (const line of description) {
 		ctx.fillText(line, unit(580), unit(310) + currentHeight);
 		currentHeight += unit(45);

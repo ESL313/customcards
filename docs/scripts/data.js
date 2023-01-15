@@ -18,99 +18,20 @@ function getData(...pathArgs) {
 	return item;
 }
 
-function sendDefault(...pathArgs) {
+async function sendDefault(...pathArgs) {
 	const paths = [...pathArgs];
 	let isCharacter = true;
 	try { if (data.info.type === 'Action') isCharacter = false }
 	catch { }
-	let item = {
-		info: {
-			size: 1,
-			type: 'Character'
-		},
-		character: {
-			name: 'Traveler',
-			image: '/customcards/assets/default/traveler.png',
-			element: 'Anemo',
-			weapon: 'Sword',
-			faction: 'Mondstadt',
-			health: 10,
-			energy: 3
-		},
-		combatSkills: [
-			{
-				name: 'Foreign Ironwind',
-				image: '/customcards/assets/default/normal_attack.png',
-				type: 'Normal Attack',
-				description: 'Deals 2 Physical DMG.',
-				cost: [
-					{
-						type: 'Anemo',
-						value: 1
-					},
-					{
-						type: 'Unaligned',
-						value: 2
-					}
-				]
-			},
-			{
-				name: 'Palm Vortex',
-				image: '/customcards/assets/default/elemental_skill.png',
-				type: 'Elemental Skill',
-				description: 'Deals 3 Anemo DMG.',
-				cost: [
-					{
-						type: 'Anemo',
-						value: 3
-					}
-				]
-			},
-			{
-				name: 'Gust Surge',
-				image: '/customcards/assets/default/elemental_burst.png',
-				type: 'Elemental Burst',
-				description: 'Deals 3 Anemo DMG.',
-				cost: [
-					{
-						type: 'Anemo',
-						value: 3
-					},
-					{
-						type: 'Energy',
-						value: 3
-					}
-				]
-			}
-		],
-		specialSkills: [
-			{
-				name: 'Tornado',
-				type: 'Summon',
-				description: 'End Phase: Deals 2 Anemo DMG. Usages: 2'
-			}
-		]
-	};
 
-	if (!isCharacter) item = {
-		info: {
-			size: 1,
-			type: 'Action'
-		},
-		character: {
-			name: 'Paimon',
-			image: '/customcards/assets/default/paimon.png',
-			type: 'Support Card',
-			subtype: 'Companion',
-			description: 'When Action Phase begins: Create Omni Element x2. Usage(s): 2'
-		},
-		cost: [
-			{
-				type: 'Matching',
-				value: 3
-			}
-		]
-	}
+	let characterCard = await fetch('/customcards/assets/default/traveler.json');
+	characterCard = await characterCard.json();
+	let actionCard = await fetch('/customcards/assets/default/paimon.json');
+	actionCard = await actionCard.json();
+
+	let item = characterCard;
+
+	if (!isCharacter) item = actionCard;
 
 	for (const path of paths) item = item[path];
 	return item;

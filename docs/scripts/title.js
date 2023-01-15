@@ -1,9 +1,9 @@
 async function characterTitle() {
 	const input = {
-		name: getData('character', 'name'),
-		element: getData('character', 'element'),
-		weapon: getData('character', 'weapon'),
-		faction: getData('character', 'faction')
+		name: await getData('character', 'name'),
+		element: await getData('character', 'element'),
+		weapon: await getData('character', 'weapon'),
+		faction: await getData('character', 'faction')
 	};
 
 	const element = new Image();
@@ -37,9 +37,9 @@ async function characterTitle() {
 
 async function actionTitle() {
 	const input = {
-		name: getData('character', 'name'),
-		type: getData('character', 'type'),
-		subtype: getData('character', 'subtype')
+		name: await getData('character', 'name'),
+		type: await getData('character', 'type'),
+		subtype: await getData('character', 'subtype')
 	};
 
 	ctx.fillStyle = color.primary;

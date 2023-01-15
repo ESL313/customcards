@@ -1,8 +1,8 @@
 async function characterCard() {
 	const input = {
-		image: getData('character', 'image'),
-		health: getData('character', 'health'),
-		energy: getData('character', 'energy')
+		image: await getData('character', 'image'),
+		health: await getData('character', 'health'),
+		energy: await getData('character', 'energy')
 	};
 
 	const char = new Image();
@@ -50,8 +50,8 @@ async function characterCard() {
 
 async function actionCard() {
 	const input = {
-		image: getData('character', 'image'),
-		cost: getData('cost')
+		image: await getData('character', 'image'),
+		cost: await getData('cost')
 	};
 
 	const char = new Image();

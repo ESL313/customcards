@@ -19,7 +19,7 @@ const color = {
 };
 
 async function render() {
-	const size = getData('info', 'size');
+	const size = await getData('info', 'size');
 	canvas.width = 1920 * size;
 	canvas.height = 1080 * size;
 
@@ -27,18 +27,18 @@ async function render() {
 	await genshinFont.load();
 	await document.fonts.add(genshinFont);
 
-	if (getData('info', 'type') === 'Character') {
+	if (await getData('info', 'type') === 'Character') {
 		await background();
 		await characterTitle();
 		await characterCard();
-		const combatSkillCount = getData('combatSkills').length;
+		const combatSkillCount = (await getData('combatSkills')).length;
 		let i = 0;
 		let usedHeight = unit(0);
 		while (i < combatSkillCount) {
 			usedHeight += await combatSkill(i, usedHeight);
 			i++;
 		}
-		const specialSkillCount = getData('specialSkills').length;
+		const specialSkillCount = (await getData('specialSkills')).length;
 		i = 0;
 		usedHeight = unit(0);
 		while (i < specialSkillCount) {
