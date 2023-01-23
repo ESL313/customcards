@@ -65,12 +65,25 @@ function wrapText(text, width) {
 	while (start <= words.length) {
 		let lineWidth = 0;
 		let wordCount = 0;
-		while (lineWidth <= width && start + wordCount <= words.length) {
-			lineWidth = ctx.measureText(words.slice(start, start + wordCount + 1).join(' ')).width;
-			if (lineWidth <= width) wordCount++;
+		let newline = false;
+		while (lineWidth <= width && start + wordCount <= words.length && !newline) {
+			if (words[start + wordCount] === '\n') {
+				newline = true;
+				wordCount++;
+			}
+			else {
+				lineWidth = ctx.measureText(words.slice(start, start + wordCount + 1).join(' ')).width;
+				if (lineWidth <= width) wordCount++;
+			}
 		}
-		lines.push(words.slice(start, start + wordCount).join(' '));
-		start += wordCount;
+		if (wordCount) {
+			lines.push(words.slice(start, start + wordCount).join(' '));
+			start += wordCount;
+		}
+		else {
+			lines.push('');
+			start++;
+		}
 	}
 
 	return lines;
